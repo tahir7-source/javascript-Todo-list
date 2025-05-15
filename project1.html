@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>javascript - Todo List</title>
+  <style>
+    /* Reset some default browser styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #Todolist {
+      background: #fff;
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    #input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    #addbutton {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    #addbutton:hover {
+      background-color: #218838;
+    }
+
+    ul#todos {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    ul#todos li {
+      background: #f0f0f0;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+  <div id="Todolist">
+    <input id="input" type="text" placeholder="Enter your todo">
+    <button id="addbutton">Add Todo</button>
+    <ul id="todos"></ul>
+  </div>
+
+  <script>
+    const input = document.getElementById("input");
+    const button = document.getElementById("addbutton");
+    const Todolist = document.getElementById("todos");
+
+    button.addEventListener("click", () => {
+      if (input.value.trim()) {
+        const li = document.createElement("li");
+        li.innerHTML = `${input.value}
+        <button class="delete-btn">Delete</button>`;
+
+        li.querySelector(".delete-btn").addEventListener("click", () => {
+          li.remove();
+        });
+
+        Todolist.appendChild(li);
+        input.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
